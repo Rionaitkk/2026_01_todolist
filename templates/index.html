@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ToDo アプリ</title>
+</head>
+<body>
+    <h1>ToDo リスト</h1>
+    <form action="/add" method="post"> {#`追加ボタンが押されたらapp.pyの@app.route('/add') という場所にデータを送りなさい 通信モード`#}
+        <input type="text" name="todo_item" placeholder="新しいタスクを入力" required>
+        <button type="submit">追加</button>
+    </form>
+    <ul>
+        {% for task in todo_list %} {# {%-%}はfor文や、if文を使えるようにする便利機能 #}
+            <li>{{ task }}</li>
+            <a href="/done/{{ loop.index0 }}">完了！</a>
+            <a href="/delete/{{ loop.index0 }}">削除</a>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h3>終わったこと</h3>
+    <ul>
+        {% for item in done_list %}
+            <li><s>{{ item }}</s></li>
+            {% endfor %}
+    </ul>
+
+</body>
+</html>
